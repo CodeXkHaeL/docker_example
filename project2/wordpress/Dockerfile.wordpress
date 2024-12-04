@@ -1,0 +1,3 @@
+# Dockerfile.wordpress this is use to create a image for wordpress
+FROM wordpress:latest # pull the image wordpress 
+EXPOSE 80 # expose port 80 (http)

@@ -1,7 +1,6 @@
 version: '3.1'
 
 services:
-
   wordpress: # name of service
     build: # use to build the image
       context: ./wordpress  # Directory where Dockerfile.wordpress is located
@@ -11,24 +10,24 @@ services:
     ports:
       - 8080:80 # Expose port 80 of the container to port 8080 on the host for accessing WordPress
     environment:
-      WORDPRESS_DB_HOST: db:3306  # Connect to the MySQL service at db:3306
-      WORDPRESS_DB_USER: exampleuser # username for database
-      WORDPRESS_DB_PASSWORD: examplepass # password for database
-      WORDPRESS_DB_NAME: exampledb # database name 
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
     volumes:
-      - wordpress:/var/www/html  # Persist WordPress content
-
+      - wordpress:/var/www/html
+  
   db:
-    image: mysql:8.0 # image used for database
-    restart: always #  Restart the container if it stops.
-    environment: #  database configuration
-      MYSQL_DATABASE: exampledb # database name
-      MYSQL_USER: exampleuser  # username for database
-      MYSQL_PASSWORD: examplepass # password for database
-      MYSQL_RANDOM_ROOT_PASSWORD: '1' MYSQL_RANDOM_ROOT_PASSWORD: '1'  # Generate a random root password for MySQL on container startup
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
-      - db:/var/lib/mysql  # Persist MySQL data
+      - db:/var/lib/mysql
 
 volumes:
-  wordpress:  # Volume for WordPress content
-  db:  # Volume for MySQL data
+  wordpress:
+  db:
